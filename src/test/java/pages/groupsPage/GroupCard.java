@@ -42,8 +42,4 @@ public class GroupCard {
                 .click();
         $(IN_GROUP_MSG).shouldBe(visible.because("Нет сообщения о вступлении в группу"));
     }
-
-    public void goToCurrGroupPage() {
-        rootElem.$(TITLE).click();
-    }
 }
