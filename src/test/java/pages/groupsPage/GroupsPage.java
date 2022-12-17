@@ -17,10 +17,14 @@ public class GroupsPage implements Loadable {
         validate();
     }
 
+    public GroupCard getFirstGroupCard() {
+        $(GROUP_CARD_LOCATOR).shouldBe(visible.because("Нет карточек групп"));
+        return new GroupCard($(GROUP_CARD_LOCATOR));
+    }
+
 
     @Override
     public void validate() {
         $(UPPER_CONTAINER).shouldBe(visible.because("Нет верхней панели на странице групп"));
-
     }
 }
