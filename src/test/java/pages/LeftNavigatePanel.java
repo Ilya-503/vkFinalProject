@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import pages.groupsPage.GroupsPage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
@@ -21,8 +22,9 @@ public class LeftNavigatePanel {
 
     }
 
-    protected void goToGroupsPage() {
+    protected GroupsPage goToGroupsPage() {
         ROOT_ELEM.$(GROUPS).shouldBe(visible.because("Нет кнопки перехода на страницу групп")).click();
+        return new GroupsPage();
     }
 
     public void isVisible() {
