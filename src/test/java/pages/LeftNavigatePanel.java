@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LeftNavigatePanel {
 
-    private final SelenideElement ROOT_ELEM = $(byAttribute("data-l", "t,navigation"));
+    private static final SelenideElement ROOT_ELEM = $(byAttribute("data-l", "t,navigation"));
     private static final By USER_PAGE = byAttribute("data-l", "t,userPage");
     private static final By NEWS_PAGE = byAttribute("data-l", "t,userMain");
     private static final By FRIENDS = byAttribute("data-l", "t,userFriend");
@@ -22,12 +22,12 @@ public class LeftNavigatePanel {
 
     }
 
-    protected GroupsPage goToGroupsPage() {
+     public static GroupsPage goToGroupsPage() {
         ROOT_ELEM.$(GROUPS).shouldBe(visible.because("Нет кнопки перехода на страницу групп")).click();
         return new GroupsPage();
     }
 
-    public void isVisible() {
+    public static void isVisible() {
         $(ROOT_ELEM).shouldBe(visible.because("Нет левой панели навигации"));
     }
 
