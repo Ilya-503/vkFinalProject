@@ -1,2 +1,4 @@
-package pages.groupsPage;public class GroupsPage {
+package pages.groupsPage;
+
+public class GroupsPage {
 }
