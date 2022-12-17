@@ -1,6 +1,7 @@
 package pages.mainPage;
 
 import org.openqa.selenium.By;
+import pages.LeftNavigatePanel;
 import pages.loginPage.Loadable;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -12,16 +13,15 @@ public class MainPage implements Loadable {
     private final LeftNavigatePanel leftNavigatePanel;
 
     private static final By UPPER_TOOL_BAR = byAttribute("data-l", "t,navigationToolbar");
-    private static final By LEFT_NAVIGATION_PANEL = byAttribute("data-l" ,"t,navigation");
 
     public MainPage() {
         validate();
-        leftNavigatePanel = new LeftNavigatePanel($(LEFT_NAVIGATION_PANEL));
+        leftNavigatePanel = new LeftNavigatePanel();
     }
 
     @Override
     public void validate() {
         $(UPPER_TOOL_BAR).shouldBe(visible.because("Нет верхней панели навигации"));
-        $(LEFT_NAVIGATION_PANEL).shouldBe(visible.because("Нет левой панели навигации"));
+        leftNavigatePanel.isVisible();
     }
 }

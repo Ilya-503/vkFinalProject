@@ -1,7 +1,6 @@
 package pages.loginPage;
 
 import org.openqa.selenium.By;
-import pages.mainPage.LeftNavigatePanel;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
