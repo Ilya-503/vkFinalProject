@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import pages.loginPage.LoginPage;
 
@@ -17,10 +18,15 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.baseUrl = "https://ok.ru/";
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true;       // delete this
     }
 
-    public void logIn() {
+//    @AfterEach
+//    public void close() {
+//        Selenide.closeWebDriver();
+//    }
+
+   void logIn() {
         open(Configuration.baseUrl);
         new LoginPage()
                 .setLogin(LOGIN)

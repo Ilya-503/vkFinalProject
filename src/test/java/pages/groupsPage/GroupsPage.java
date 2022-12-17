@@ -44,6 +44,10 @@ public class GroupsPage implements Loadable {
         return new CurrentGroupPage();
     }
 
+    public void removeAllJoinedGroups() {
+        //TODO
+    }
+
     @Override
     public void validate() {
         $(GROUPS_TOOLS_CONTAINER).shouldBe(visible.because("Нет верхней панели на странице групп"));
