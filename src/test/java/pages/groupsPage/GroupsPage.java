@@ -2,8 +2,8 @@ package pages.groupsPage;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import pages.CurrentGroupPage;
 import pages.LeftNavigatePanel;
 import pages.loginPage.Loadable;
 
@@ -30,19 +30,18 @@ public class GroupsPage implements Loadable {
     }
 
     public ElementsCollection getAllJoinedGroups() {
-        Selenide.refresh(); // если только что вступили -> для отображения
         return $(JOINED_GROUPS_PANEL)
-                .shouldBe(visible.because("Нет панели с добавленными группами"))  // if no groups (event not fail) -> EXCEPTION
+                .shouldBe(visible.because("Нет панели с добавленными группами"))  // if no groups (even not fail) -> EXCEPTION
                 .$$(JOINED_GROUP_LOCATOR);
     }
 
-    public void goToLastJoinedGroup() {
-        Selenide.refresh(); // если только что вступили -> для отображения
+    public CurrentGroupPage goToLastJoinedGroup() {
         $(JOINED_GROUPS_PANEL)
                 .shouldBe(visible.because("Нет панели с добавленными группами"))
                 .$(JOINED_GROUP_LOCATOR)
                 .shouldBe(visible.because("Нет иконки добавленной группы"))
                 .click();
+        return new CurrentGroupPage();
     }
 
     @Override
