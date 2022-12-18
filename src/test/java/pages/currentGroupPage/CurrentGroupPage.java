@@ -1,7 +1,8 @@
-package pages;
+package pages.currentGroupPage;
 
 import org.openqa.selenium.By;
-import pages.loginPage.Loadable;
+import pages.LeftNavigatePanel;
+import pages.Loadable;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;

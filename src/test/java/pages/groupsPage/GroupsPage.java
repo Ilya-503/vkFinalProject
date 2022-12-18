@@ -1,11 +1,12 @@
 package pages.groupsPage;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
-import pages.CurrentGroupPage;
+import pages.currentGroupPage.CurrentGroupPage;
 import pages.LeftNavigatePanel;
-import pages.loginPage.Loadable;
+import pages.Loadable;
+import pages.groupsPage.factories.GroupCreationWindow;
+import pages.groupsPage.factories.GroupCreationWindowFactory;
+import pages.groupsPage.pageElements.EventCreationWindow;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
@@ -17,6 +18,7 @@ public class GroupsPage implements Loadable {
     private static final By GROUPS_TOOLS_CONTAINER = byXpath("//*[contains(@id, 'UserGroupsCatalogHeaderBlock')]");
     private static final By JOINED_GROUPS_PANEL = byAttribute("data-l", "t,scroll-slider");
     private static final By JOINED_GROUP_LOCATOR = byAttribute("data-l", "t,visit");
+    private static final By CREATE_GROUP_BTN = byXpath("//*[contains(@class, 'groups-catalog-header_button')]");
     private static final By GROUP_CARD_LOCATOR =
             byXpath("//*[contains(@data-l, 'groupCard,POPULAR_GROUPS.popularTop')]");
 
@@ -45,6 +47,13 @@ public class GroupsPage implements Loadable {
             LeftNavigatePanel.goToGroupsPage();
         }
 
+    }
+
+    public GroupCreationWindow createGroup() { // FIX
+        $(CREATE_GROUP_BTN)
+                .shouldBe(visible.because("Нет кнопки для создания группы"))
+                .click();
+        return GroupCreationWindowFactory.getGroupCreationWindow();
     }
 
     @Override

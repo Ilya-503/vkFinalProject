@@ -1,6 +1,7 @@
 package pages.loginPage;
 
 import org.openqa.selenium.By;
+import pages.Loadable;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;

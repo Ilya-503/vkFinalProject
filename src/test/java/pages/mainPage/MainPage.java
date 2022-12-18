@@ -3,7 +3,7 @@ package pages.mainPage;
 import org.openqa.selenium.By;
 import pages.LeftNavigatePanel;
 import pages.groupsPage.GroupsPage;
-import pages.loginPage.Loadable;
+import pages.Loadable;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
