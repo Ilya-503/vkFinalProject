@@ -26,6 +26,8 @@ public class GroupCreationWindow implements Loadable {
     public GroupCreationWindow setTitle(String title) {
         $(TITLE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода названия группы"))
+                .clear();
+        $(TITLE_FIELD)
                 .setValue(title);
         return this;
     }
