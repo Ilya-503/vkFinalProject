@@ -23,15 +23,15 @@ public class GroupsPageTest extends BaseTest {
 
     @Test
     public void testAddingGroup() {
-//        GroupCard firstCard = groupsPage.getFirstGroupCard();
-//        firstCard.joinGroup();
-//        String title = firstCard.getTitle(), participAmount = firstCard.getParticipAmount();
-//        Selenide.refresh();   // для отображения в панели добавленных груп
-//        CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
-//
-//        assertEquals(title, lastGroupPage.getGroupTitle(), "Название группы не совпало с ожидаемым");
-//        assertEquals(participAmount, lastGroupPage.getGroupMembersAmount(),
-//                "Кол-во участников группы не совпало с ожидаемым");
+        GroupCard firstCard = groupsPage.getFirstGroupCard();
+        firstCard.joinGroup();
+        String title = firstCard.getTitle(), participAmount = firstCard.getParticipAmount();
+        Selenide.refresh();   // для отображения в панели добавленных груп
+        CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
+
+        assertEquals(title, lastGroupPage.getGroupTitle(), "Название группы не совпало с ожидаемым");
+        assertEquals(participAmount, lastGroupPage.getGroupMembersAmount(),
+                "Кол-во участников группы не совпало с ожидаемым");
     }
 
     @AfterEach
