@@ -31,6 +31,8 @@ public class EventCreationWindow extends GroupCreationWindow {
     public EventCreationWindow setStartDate(String startDate) {
         $(START_DATE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода даты начала меро"))
+                .clear();
+        $(START_DATE_FIELD)
                 .setValue(startDate);
         return this;
     }
@@ -38,6 +40,8 @@ public class EventCreationWindow extends GroupCreationWindow {
     public EventCreationWindow setAddress(String address) {
         $(ADDRESS_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода адреса меро меро"))
+                .clear();
+        $(ADDRESS_FIELD)
                 .setValue(address);
         return this;
     }
@@ -55,6 +59,8 @@ public class EventCreationWindow extends GroupCreationWindow {
     public EventCreationWindow setPhone(String phone) {
         $(PHONE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода номера телефона у меро"))
+                .clear();
+        $(PHONE_FIELD)
                 .setValue(phone);
         return this;
     }
