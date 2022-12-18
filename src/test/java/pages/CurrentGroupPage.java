@@ -15,6 +15,7 @@ public class CurrentGroupPage implements Loadable {
 
     private static final By GROUP_TITLE = byClassName("group-name_h");
     private static final By PARTICIP_AMOUNT = byXpath("//*[contains(@data-l, 'GroupMembers')]");
+    private static final By EXIT_GROUP_BTN = byXpath("//*[contains(@class, 'dropdown_ac')]");
 
     public CurrentGroupPage() {
         validate();
@@ -31,6 +32,16 @@ public class CurrentGroupPage implements Loadable {
                 .shouldBe(visible.because("Нет элемента с кол-вом участников группы"))
                 .getText()
                 .split(" ")[1];
+    }
+
+    public void exitGroup() {
+        $(EXIT_GROUP_BTN).shouldBe(visible.because("Нет кнопки выхода из группы"));
+        $(EXIT_GROUP_BTN).hover();
+        $(EXIT_GROUP_BTN).click();
+        By exitGroupDropdown = byXpath("//*[@class='dropdown_n']");
+        $(exitGroupDropdown).shouldBe(visible.because("Нет выпадающей кнопки выхода из группы")).click();
+        By submitExit = byAttribute("data-l", "t,confirm");
+        $(submitExit).should(visible.because("Нет окна подтверждения выходы из группы")).click();
     }
 
     @Override

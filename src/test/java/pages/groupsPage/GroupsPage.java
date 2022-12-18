@@ -29,12 +29,6 @@ public class GroupsPage implements Loadable {
         return new GroupCard($(GROUP_CARD_LOCATOR));
     }
 
-    public ElementsCollection getAllJoinedGroups() {
-        return $(JOINED_GROUPS_PANEL)
-                .shouldBe(visible.because("Нет панели с добавленными группами"))  // if no groups (even not fail) -> EXCEPTION
-                .$$(JOINED_GROUP_LOCATOR);
-    }
-
     public CurrentGroupPage goToLastJoinedGroup() {
         $(JOINED_GROUPS_PANEL)
                 .shouldBe(visible.because("Нет панели с добавленными группами"))
@@ -45,7 +39,12 @@ public class GroupsPage implements Loadable {
     }
 
     public void removeAllJoinedGroups() {
-        //TODO
+        while ($(JOINED_GROUPS_PANEL).is(visible)) {
+            CurrentGroupPage curGroupPage = goToLastJoinedGroup();
+            curGroupPage.exitGroup();
+            LeftNavigatePanel.goToGroupsPage();
+        }
+
     }
 
     @Override
