@@ -23,19 +23,21 @@ public class GroupCreationWindow implements Loadable {
     }
 
 
-    public void setTitle(String title) {
+    public GroupCreationWindow setTitle(String title) {
         $(TITLE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода названия группы"))
                 .setValue(title);
+        return this;
     }
 
-    public void setLegalTheme() {
+    public GroupCreationWindow setLegalTheme() {
         $(THEME_DROPDOWN)
                 .shouldBe(visible.because("Нет поля для выобра тематики группы"))
                 .click();
         $(LEGAL_THEME)
                 .shouldBe(visible.because("Не отображается тематика 'Кино'"))
                 .click();
+        return this;
     }
 
     public void submitCreation() {
