@@ -15,7 +15,7 @@ public class GroupCreationWindow implements Loadable {
     protected static final By THEME_DROPDOWN = byXpath("//*[contains(@class, 'multi-select-suggest-trigger')]");
     protected static final By LEGAL_THEME = byAttribute("data-value", "Кино");
     protected static final By CREATE_BTN = byAttribute("data-l", "t,confirm");
-    protected static final By ILLEGAL_TITLE_ERR = withTextCaseInsensitive("Укажите название");
+    protected static final By EMPTY_TITLE_ERR = withTextCaseInsensitive("Укажите название");
     protected static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите подкатегорию");
 
     public GroupCreationWindow() {
@@ -46,8 +46,8 @@ public class GroupCreationWindow implements Loadable {
                 .click();
     }
 
-    public boolean isIllegalTitle() {
-        return $(ILLEGAL_TITLE_ERR).is(visible);
+    public boolean isEmptyTitle() {
+        return $(EMPTY_TITLE_ERR).is(visible);
     }
 
     public boolean isIllegalTheme() {
