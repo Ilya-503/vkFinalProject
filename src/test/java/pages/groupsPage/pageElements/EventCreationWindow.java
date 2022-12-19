@@ -19,11 +19,11 @@ public class EventCreationWindow extends GroupCreationWindow {
 
     private static final By OLD_START_DATE_ERR = withTextCaseInsensitive("оканчиваться в прошлом");
     private static final By EMPTY_START_DATE_ERR = withTextCaseInsensitive("неправильное время");
-    private static final By ILLEGAL_CITY_ERR = withTextCaseInsensitive("Укажите город");
+    private static final By EMPTY_CITY_ERR = withTextCaseInsensitive("Укажите город");
     private static final By EMPTY_ADDRESS_ERR = withTextCaseInsensitive("Укажите адрес");
     private static final By ILLEGAL_PHONE_ERR = withTextCaseInsensitive("Неправильный номер");
     private static final By ILLEGAL_WEBSITE_ERR = withTextCaseInsensitive("неправильный адрес сайта");
-    private static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите категорию");
+    private static final By EMPTY_THEME_ERR = withTextCaseInsensitive("Укажите категорию");
 
     public EventCreationWindow setStartDate(String startDate) {
         $(START_DATE_FIELD)
@@ -35,8 +35,8 @@ public class EventCreationWindow extends GroupCreationWindow {
     }
 
     @Override
-    public boolean isIllegalTheme() {
-        return $(ILLEGAL_THEME_ERR).is(visible);
+    public boolean isEmptyTheme() {
+        return $(EMPTY_THEME_ERR).is(visible);
     }
 
     public EventCreationWindow setAddress(String address) {
@@ -82,8 +82,8 @@ public class EventCreationWindow extends GroupCreationWindow {
         return $(EMPTY_START_DATE_ERR).is(visible);
     }
 
-    public boolean isIllegalCity() {
-        return $(ILLEGAL_CITY_ERR).is(visible);
+    public boolean isEmptyCity() {
+        return $(EMPTY_CITY_ERR).is(visible);
     }
 
     public boolean isEmptyAddress() {

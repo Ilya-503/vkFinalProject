@@ -16,7 +16,7 @@ public class GroupCreationWindow implements Loadable {
     protected static final By LEGAL_THEME = byAttribute("data-value", "Кино");
     protected static final By CREATE_BTN = byAttribute("data-l", "t,confirm");
     protected static final By EMPTY_TITLE_ERR = withTextCaseInsensitive("Укажите название");
-    protected static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите подкатегорию");  // категорию
+    protected static final By EMPTY_THEME_ERR = withTextCaseInsensitive("Укажите подкатегорию");  // категорию
 
     public GroupCreationWindow() {
         validate();
@@ -53,8 +53,8 @@ public class GroupCreationWindow implements Loadable {
         return $(EMPTY_TITLE_ERR).is(visible);
     }
 
-    public boolean isIllegalTheme() {
-        return $(ILLEGAL_THEME_ERR).is(visible);
+    public boolean isEmptyTheme() {
+        return $(EMPTY_THEME_ERR).is(visible);
     }
 
     public static boolean isEventCrWn() {

@@ -1,8 +1,5 @@
 import com.codeborne.selenide.Selenide;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.currentGroupPage.CurrentGroupPage;
@@ -12,6 +9,11 @@ import pages.groupsPage.GroupsPage;
 import pages.groupsPage.factories.GroupCreationWindow;
 import pages.groupsPage.pageElements.EventCreationWindow;
 import pages.mainPage.MainPage;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,6 +28,7 @@ public class GroupsPageTest extends BaseTest {
     }
 
     @Test
+    @DisplayName("Проверка добавления группы")
     public void testAddingGroup() {
         GroupCard firstCard = groupsPage.getFirstGroupCard();
         firstCard.joinGroup();
@@ -38,8 +41,9 @@ public class GroupsPageTest extends BaseTest {
                 "Кол-во участников группы не совпало с ожидаемым");
     }
 
-    @ParameterizedTest
-    @CsvFileSource(files = "illegalDataCrEvTest.csv", numLinesToSkip = 1) // DATE FIX
+    @DisplayName("Проверка создания мероприятия с неверными данными")
+    @ParameterizedTest(name = "ID строки с данными: {0}")
+    @CsvFileSource(files = "illegalDataCrEvTest.csv", numLinesToSkip = 1)
     public void createEventWithIllegalDataTest(String id, String startDate, String phone, String website, String title,
                          String theme, String city, String address,
                          String adr_err, String city_err, String thm_err, String title_err,
@@ -60,24 +64,31 @@ public class GroupsPageTest extends BaseTest {
         }
 
         grCrWindow.submitCreation();  // find where ILLEGAL to EMPTY
-        Thread.sleep(700);
+       Thread.sleep(700);  // FIX THIS
 
         assertAll(
-                () -> assertEquals(adr_err.equals("TRUE"), grCrWindow.isEmptyAddress(), "ошибка адреса"),
-                () -> assertEquals(city_err.equals("TRUE"), grCrWindow.isIllegalCity(), "ошибка города"),
-                () -> assertEquals(thm_err.equals("TRUE"), grCrWindow.isIllegalTheme(), "ошибка тематики"),
-                () -> assertEquals(title_err.equals("TRUE"), grCrWindow.isEmptyTitle(), "ошибка названия"),
-                () -> assertEquals(ph_err.equals("TRUE"), grCrWindow.isIllegalPhone(), "ошибка номера"),
-                () -> assertEquals(web_err.equals("TRUE"), grCrWindow.isIllegalWebsite(), "ошибка сайта"),
+                () -> assertEquals(adr_err.equals("TRUE"), grCrWindow.isEmptyAddress(),
+                        "Не совпадает видимость ошибки адреса"),
+                () -> assertEquals(city_err.equals("TRUE"), grCrWindow.isEmptyCity(),
+                        "Не совпадаает видимость ошибки города"),
+                () -> assertEquals(thm_err.equals("TRUE"), grCrWindow.isEmptyTheme(),
+                        "Не совпадает видимость ошибки тематики"),
+                () -> assertEquals(title_err.equals("TRUE"), grCrWindow.isEmptyTitle(),
+                        "Не совпадает видимость ошибки названия"),
+                () -> assertEquals(ph_err.equals("TRUE"), grCrWindow.isIllegalPhone(),
+                        "Не совпадает видимость ошибки номера"),
+                () -> assertEquals(web_err.equals("TRUE"), grCrWindow.isIllegalWebsite(),
+                        "Не совпадает видимость ошибки сайта"),
                 () -> {
                     switch (date_err) {
-                        case "1" -> assertTrue(grCrWindow.isEmptyStartDate(), "ошибка пустой даты");
-                        case "2" -> assertTrue(grCrWindow.isOldStartDate(), "ошибка старой даты");
+                        case "1" -> assertTrue(grCrWindow.isEmptyStartDate(),
+                                "Не совпадает видимость ошибки пустой даты");
+                        case "2" -> assertTrue(grCrWindow.isOldStartDate(),
+                                "Не совпадает видимость ошибки старой даты");
                     }
                 }
         );
         }
-
 
 
     @AfterEach

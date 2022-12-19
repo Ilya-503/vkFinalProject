@@ -18,7 +18,7 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.baseUrl = "https://ok.ru/";
-        Configuration.holdBrowserOpen = true;       // delete this
+        // Configuration.holdBrowserOpen = true;       // delete this
     }
 
 //    @AfterEach
