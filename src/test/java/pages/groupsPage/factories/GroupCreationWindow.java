@@ -16,7 +16,7 @@ public class GroupCreationWindow implements Loadable {
     protected static final By LEGAL_THEME = byAttribute("data-value", "Кино");
     protected static final By CREATE_BTN = byAttribute("data-l", "t,confirm");
     protected static final By EMPTY_TITLE_ERR = withTextCaseInsensitive("Укажите название");
-    protected static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите подкатегорию");
+    protected static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите подкатегорию");  // категорию
 
     public GroupCreationWindow() {
         validate();
@@ -46,6 +46,7 @@ public class GroupCreationWindow implements Loadable {
         $(CREATE_BTN)
                 .shouldBe(visible.because("Нет кнопки подтверждения создания группы"))
                 .click();
+
     }
 
     public boolean isEmptyTitle() {

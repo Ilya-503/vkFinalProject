@@ -19,14 +19,11 @@ public class EventCreationWindow extends GroupCreationWindow {
 
     private static final By OLD_START_DATE_ERR = withTextCaseInsensitive("оканчиваться в прошлом");
     private static final By EMPTY_START_DATE_ERR = withTextCaseInsensitive("неправильное время");
-    private static final By ILLEGAL_CITY_ERR = withTextCaseInsensitive("укажите город");
-    private static final By EMPTY_ADDRESS_ERR = withTextCaseInsensitive("неправильный номер");
-    private static final By ILLEGAL_PHONE_ERR = withTextCaseInsensitive("оканчиваться в прошлом");
-    private static final By ILLEGAL_WEBSITE_ERR = withTextCaseInsensitive("неправильныц адрес сайта");
-
-    public EventCreationWindow() {
-        super();
-    }
+    private static final By ILLEGAL_CITY_ERR = withTextCaseInsensitive("Укажите город");
+    private static final By EMPTY_ADDRESS_ERR = withTextCaseInsensitive("Укажите адрес");
+    private static final By ILLEGAL_PHONE_ERR = withTextCaseInsensitive("Неправильный номер");
+    private static final By ILLEGAL_WEBSITE_ERR = withTextCaseInsensitive("неправильный адрес сайта");
+    private static final By ILLEGAL_THEME_ERR = withTextCaseInsensitive("Укажите категорию");
 
     public EventCreationWindow setStartDate(String startDate) {
         $(START_DATE_FIELD)
@@ -35,6 +32,11 @@ public class EventCreationWindow extends GroupCreationWindow {
         $(START_DATE_FIELD)
                 .setValue(startDate);
         return this;
+    }
+
+    @Override
+    public boolean isIllegalTheme() {
+        return $(ILLEGAL_THEME_ERR).is(visible);
     }
 
     public EventCreationWindow setAddress(String address) {
