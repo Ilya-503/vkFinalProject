@@ -42,5 +42,6 @@ public class GroupCard {
                 .shouldBe(visible.because("Нет кнопки вступления в группу"))
                 .click();
         $(IN_GROUP_MSG).shouldBe(visible.because("Нет сообщения о вступлении в группу"));
+        Selenide.refresh(); // для отображения добавленной группы в верхней панели
     }
 }

@@ -30,5 +30,4 @@ public class LeftNavigatePanel {
     public static void isVisible() {
         $(ROOT_ELEM).shouldBe(visible.because("Нет левой панели навигации"));
     }
-
 }

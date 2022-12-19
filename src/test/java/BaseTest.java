@@ -18,13 +18,12 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.baseUrl = "https://ok.ru/";
-        // Configuration.holdBrowserOpen = true;       // delete this
     }
 
-//    @AfterEach
-//    public void close() {
-//        Selenide.closeWebDriver();
-//    }
+    @AfterEach
+    public void close() {
+        Selenide.closeWebDriver();
+    }
 
    void logIn() {
         open(Configuration.baseUrl);

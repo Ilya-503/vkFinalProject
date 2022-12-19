@@ -3,17 +3,10 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import pages.currentGroupPage.CurrentGroupPage;
-import pages.LeftNavigatePanel;
 import pages.groupsPage.GroupCard;
 import pages.groupsPage.GroupsPage;
-import pages.groupsPage.factories.GroupCreationWindow;
 import pages.groupsPage.pageElements.EventCreationWindow;
 import pages.mainPage.MainPage;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,19 +21,21 @@ public class GroupsPageTest extends BaseTest {
     }
 
     @Test
+    @Tag("groupsPage")
     @DisplayName("Проверка добавления группы")
     public void testAddingGroup() {
         GroupCard firstCard = groupsPage.getFirstGroupCard();
-        firstCard.joinGroup();
         String title = firstCard.getTitle(), participAmount = firstCard.getParticipAmount();
-        Selenide.refresh();   // для отображения в панели добавленных груп
+        firstCard.joinGroup();
         CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
 
-        assertEquals(title, lastGroupPage.getGroupTitle(), "Название группы не совпало с ожидаемым");
+        assertEquals(title, lastGroupPage.getGroupTitle(),
+                "Название группы не совпало с ожидаемым");
         assertEquals(participAmount, lastGroupPage.getGroupMembersAmount(),
                 "Кол-во участников группы не совпало с ожидаемым");
     }
 
+    @Tags({@Tag("groupsPage"), @Tag("illegalData")})
     @DisplayName("Проверка создания мероприятия с неверными данными")
     @ParameterizedTest(name = "ID строки с данными: {0}")
     @CsvFileSource(files = "illegalDataCrEvTest.csv", numLinesToSkip = 1)
@@ -88,6 +83,13 @@ public class GroupsPageTest extends BaseTest {
                     }
                 }
         );
+        }
+
+        @Test
+        public void test() {
+            CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
+            System.out.println(lastGroupPage.getGroupTitle());
+            System.out.println(lastGroupPage.getGroupMembersAmount());
         }
 
 
