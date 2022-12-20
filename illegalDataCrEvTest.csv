@@ -3,12 +3,12 @@
 2,15.10.2030,79501234567,someSite_ru,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,0
 3,15.10.2030,,https://yearofexchange.org/,, ,, ,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,0
 4,15.10.2030,8_800,,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,0
-5,,,,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,0
-6,,8_800,someSite_ru,,ThemeName,,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,0
-7,,79501234567,https://yearofexchange.org/,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,0
-8,,,,,ThemeName, ,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,0
-9,,8_800,someSite_ru,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,0
-10,,79501234567,https://yearofexchange.org/,,ThemeName, ,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,0
+5,,,,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,1
+6,,8_800,someSite_ru,,ThemeName,,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,1
+7,,79501234567,https://yearofexchange.org/,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,1
+8,,,,,ThemeName, ,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,1
+9,,8_800,someSite_ru,EventName, ,CityName, ,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE,1
+10,,79501234567,https://yearofexchange.org/,,ThemeName, ,Adress,FALSE,TRUE,FALSE,TRUE,FALSE,FALSE,1
 11,12.01.2022,8_800,https://yearofexchange.org/,, , , ,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,0
 12,12.01.2022,79501234567,,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,2
 13,12.01.2022,,someSite_ru,, , , ,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,0

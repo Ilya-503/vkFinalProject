@@ -72,6 +72,8 @@ public class EventCreationWindow extends GroupCreationWindow {
     public EventCreationWindow setWebSite(String webSite) {
         $(WEBSITE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода вебсайта у меро"))
+                .clear();
+        $(WEBSITE_FIELD)
                 .setValue(webSite);
         return this;
     }

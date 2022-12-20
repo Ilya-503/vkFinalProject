@@ -77,6 +77,12 @@ public class GroupsPageTest extends BaseTest {
                         "Не совпадает видимость ошибки сайта"),
                 () -> {
                     switch (date_err) {
+                        case "0" -> {
+                            assertFalse(grCrWindow.isEmptyStartDate(),
+                                    "Ошибка пустой даты не должна быть видна");
+                            assertFalse(grCrWindow.isOldStartDate(), "" +
+                                    "Ошибка старой даты не должна быть видна");
+                        }
                         case "1" -> assertTrue(grCrWindow.isEmptyStartDate(),
                                 "Не совпадает видимость ошибки пустой даты");
                         case "2" -> assertTrue(grCrWindow.isOldStartDate(),
