@@ -1,0 +1,5 @@
+,DATE,MOBILE,WEB-SITE,NAME,THEME,CITY,ADRESS,adr_err,ct_err,th_err,name_err,mob_err,web_err,date_err
+1,15.10.2020,,,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0
+2,15.10.2030,79501234567,,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0
+3,15.10.2030,,https://yearofexchange.org/,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0
+4,15.10.2030,79501234567,https://yearofexchange.org/,EventName,ThemeName,CityName,Adress,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,0
