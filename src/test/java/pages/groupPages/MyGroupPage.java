@@ -7,6 +7,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Сраница моей группы
+ */
 public class MyGroupPage extends GroupPage {
 
     private static final By OPTIONS_DROPDOWN = byXpath("//*[@class = 'u-menu_a toggle-dropdown']");

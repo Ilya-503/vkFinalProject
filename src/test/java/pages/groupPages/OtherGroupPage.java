@@ -7,11 +7,14 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class StandardGroupPage extends GroupPage {
+/**
+ * Страница добавленной чужой группы
+ */
+public class OtherGroupPage extends GroupPage {
 
     private static final By EXIT_GROUP_BTN = byXpath("//*[contains(@class, 'dropdown_ac')]");
 
-    public StandardGroupPage() {
+    public OtherGroupPage() {
         validate();
     }
 

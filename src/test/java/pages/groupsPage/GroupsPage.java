@@ -1,7 +1,6 @@
 package pages.groupsPage;
 
 import org.openqa.selenium.By;
-import pages.groupPages.StandardGroupPage;
 import pages.LeftNavigatePanel;
 import pages.Loadable;
 import pages.groupsPage.factories.creationWindow.GroupCreationWindow;
