@@ -1,17 +1,22 @@
 package pages.groupsPage;
 
 import org.openqa.selenium.By;
-import pages.currentGroupPage.CurrentGroupPage;
+import pages.groupPages.StandardGroupPage;
 import pages.LeftNavigatePanel;
 import pages.Loadable;
-import pages.groupsPage.factories.GroupCreationWindow;
-import pages.groupsPage.factories.GroupCreationWindowFactory;
+import pages.groupsPage.factories.creationWindow.GroupCreationWindow;
+import pages.groupsPage.factories.creationWindow.GroupCreationWindowFactory;
+import pages.groupsPage.factories.groupPage.GroupPage;
+import pages.groupsPage.factories.groupPage.GroupPageFactory;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Страница с группами (группы юзера, популярные и т.д.)
+ */
 public class GroupsPage implements Loadable {
 
     private static final By GROUPS_TOOLS_CONTAINER = byXpath("//*[contains(@id, 'UserGroupsCatalogHeaderBlock')]");
@@ -33,39 +38,38 @@ public class GroupsPage implements Loadable {
         return new GroupCard($(GROUP_CARD_LOCATOR));
     }
 
-    public CurrentGroupPage goToLastJoinedGroup() {
+    public GroupPage goToLastJoinedGroup() {
         $(JOINED_GROUPS_PANEL)
                 .shouldBe(visible.because("Нет панели с добавленными группами"))
                 .$(JOINED_GROUP_LOCATOR)
                 .shouldBe(visible.because("Нет иконки добавленной группы"))
                 .click();
-        return new CurrentGroupPage();
+        return GroupPageFactory.getGroupPage();
     }
 
     public void removeAllJoinedGroups() {
         while ($(JOINED_GROUPS_PANEL).is(visible)) {
-            CurrentGroupPage curGroupPage = goToLastJoinedGroup();
-            curGroupPage.exitGroup();
+            GroupPage curGroupPage = goToLastJoinedGroup();
+            curGroupPage.leaveGroup();
             LeftNavigatePanel.goToGroupsPage();
         }
 
     }
 
     /**
-     *
      * @param flag какую группу создать?
      *             <p> 0 - публичную    </p>
      *             <p> 1 - по интересам </p>
      *             <p> 2 - мероприятие  </p>
      * @return панель создания группы
      */
-    public GroupCreationWindow createGroup(int flag) { // FIX
+    public GroupCreationWindow createGroup(int flag) {
         $(CREATE_GROUP_BTN)
                 .shouldBe(visible.because("Нет кнопки для создания группы"))
                 .click();
         switch (flag) {
             case 0 -> $(CREATE_PUBLIC_GR)
-                    .shouldBe(visible.because("Нет кнопки для создания публично группы"))
+                    .shouldBe(visible.because("Нет кнопки для создания публичной группы"))
                     .click();
             case 1 -> $(CREATE_INTEREST_GR)
                     .shouldBe(visible.because("Нет кнопки для создания группы по интересам"))
@@ -73,7 +77,7 @@ public class GroupsPage implements Loadable {
             case 2 -> $(CREATE_EVENT)
                     .shouldBe(visible.because("Нет кнопки для создания мероприятия"))
                     .click();
-            default -> fail("Использован неверный флаг при создании группы!"); // FIX
+            default -> fail("Использован неверный флаг при создании группы!");
         }
         return GroupCreationWindowFactory.getGroupCreationWindow();
     }

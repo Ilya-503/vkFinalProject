@@ -1,10 +1,10 @@
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import pages.currentGroupPage.CurrentGroupPage;
+import pages.LeftNavigatePanel;
 import pages.groupsPage.GroupCard;
 import pages.groupsPage.GroupsPage;
+import pages.groupsPage.factories.groupPage.GroupPage;
 import pages.groupsPage.pageElements.EventCreationWindow;
 import pages.mainPage.MainPage;
 
@@ -27,7 +27,7 @@ public class GroupsPageTest extends BaseTest {
         GroupCard firstCard = groupsPage.getFirstGroupCard();
         String title = firstCard.getTitle(), participAmount = firstCard.getParticipAmount();
         firstCard.joinGroup();
-        CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
+        GroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
 
         assertEquals(title, lastGroupPage.getGroupTitle(),
                 "Название группы не совпало с ожидаемым");
@@ -44,12 +44,13 @@ public class GroupsPageTest extends BaseTest {
                          String adr_err, String city_err, String thm_err, String title_err,
                          String ph_err, String web_err, String date_err) throws Exception {
 
-        EventCreationWindow grCrWindow = (EventCreationWindow) groupsPage.createGroup(2); // FIX THIS SHIT
-        grCrWindow.setStartDate(startDate);
-        grCrWindow.setPhone(phone);
-        grCrWindow.setWebSite(website);
-        grCrWindow.setTitle(title);
-        grCrWindow.setAddress(address);
+        EventCreationWindow grCrWindow = (EventCreationWindow) groupsPage.createGroup(2);
+        grCrWindow
+                .setStartDate(startDate)
+                .setPhone(phone)
+                .setWebSite(website)
+                .setAddress(address)
+                .setTitle(title);
 
         if (theme != null) {
             grCrWindow.setLegalTheme();
@@ -58,8 +59,8 @@ public class GroupsPageTest extends BaseTest {
             grCrWindow.setLegalCity();
         }
 
-        grCrWindow.submitCreation();  // find where ILLEGAL to EMPTY
-       Thread.sleep(700);  // FIX THIS
+        grCrWindow.submitCreation();
+        Thread.sleep(700);  // FIX THIS
 
         assertAll(
                 () -> assertEquals(adr_err.equals("TRUE"), grCrWindow.isEmptyAddress(),
@@ -83,20 +84,12 @@ public class GroupsPageTest extends BaseTest {
                     }
                 }
         );
+        grCrWindow.closeCreationWindow();
         }
-
-        @Test
-        public void test() {
-            CurrentGroupPage lastGroupPage = groupsPage.goToLastJoinedGroup();
-            System.out.println(lastGroupPage.getGroupTitle());
-            System.out.println(lastGroupPage.getGroupMembersAmount());
-        }
-
 
     @AfterEach
     public void clean() {
-        Selenide.closeWebDriver();
-//        LeftNavigatePanel.goToGroupsPage();
-//        groupsPage.removeAllJoinedGroups();
+        LeftNavigatePanel.goToGroupsPage();
+        groupsPage.removeAllJoinedGroups();
     }
 }

@@ -1,13 +1,16 @@
 package pages.groupsPage.pageElements;
 
 import org.openqa.selenium.By;
-import pages.groupsPage.factories.GroupCreationWindow;
+import pages.groupsPage.factories.creationWindow.GroupCreationWindow;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selectors.withTextCaseInsensitive;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Оконо создания группы по мероприятию (флаг <b>3</b>)
+ */
 public class EventCreationWindow extends GroupCreationWindow {
 
     private static final By START_DATE_FIELD = byId("field_startDate");
@@ -25,6 +28,10 @@ public class EventCreationWindow extends GroupCreationWindow {
     private static final By ILLEGAL_WEBSITE_ERR = withTextCaseInsensitive("неправильный адрес сайта");
     private static final By EMPTY_THEME_ERR = withTextCaseInsensitive("Укажите категорию");
 
+    public EventCreationWindow() {
+        super();
+    }
+
     public EventCreationWindow setStartDate(String startDate) {
         $(START_DATE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода даты начала меро"))
@@ -32,11 +39,6 @@ public class EventCreationWindow extends GroupCreationWindow {
         $(START_DATE_FIELD)
                 .setValue(startDate);
         return this;
-    }
-
-    @Override
-    public boolean isEmptyTheme() {
-        return $(EMPTY_THEME_ERR).is(visible);
     }
 
     public EventCreationWindow setAddress(String address) {
@@ -74,6 +76,11 @@ public class EventCreationWindow extends GroupCreationWindow {
         return this;
     }
 
+    @Override
+    public boolean isEmptyTheme() {            // т.к. новый локатор EMPTY_THEME_ERR
+        return $(EMPTY_THEME_ERR).is(visible);
+    }
+
     public boolean isOldStartDate() {
         return $(OLD_START_DATE_ERR).is(visible);
     }
@@ -97,6 +104,4 @@ public class EventCreationWindow extends GroupCreationWindow {
     public boolean isIllegalWebsite() {
         return $(ILLEGAL_WEBSITE_ERR).is(visible);
     }
-
-
 }

@@ -8,6 +8,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Левая навигационная панель: страница юзера, лента, друзья и т.д.
+ */
 public class LeftNavigatePanel {
 
     private static final SelenideElement ROOT_ELEM = $(byAttribute("data-l", "t,navigation"));
@@ -16,11 +19,6 @@ public class LeftNavigatePanel {
     private static final By FRIENDS = byAttribute("data-l", "t,userFriend");
     private static final By PHOTOS = byAttribute("data-l", "t,userPhotos");
     private static final By GROUPS = byAttribute("data-l", "t,userAltGroup");
-
-
-    public LeftNavigatePanel() {
-
-    }
 
      public static GroupsPage goToGroupsPage() {
         ROOT_ELEM.$(GROUPS).shouldBe(visible.because("Нет кнопки перехода на страницу групп")).click();

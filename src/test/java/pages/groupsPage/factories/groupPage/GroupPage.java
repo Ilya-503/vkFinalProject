@@ -1,4 +1,4 @@
-package pages.currentGroupPage;
+package pages.groupsPage.factories.groupPage;
 
 import org.openqa.selenium.By;
 import pages.LeftNavigatePanel;
@@ -8,17 +8,18 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CurrentGroupPage implements Loadable {
+public abstract class GroupPage implements Loadable {
 
     private static final By HEAD_PANEL = byAttribute("data-l", "t,main-content-header");
     private static final By RIGHT_INFO_PANEL = byClassName("layout-sticky-column");
-
     private static final By GROUP_TITLE = byClassName("group-name_h");
     private static final By PARTICIP_AMOUNT = byXpath("//*[contains(@data-l, 'GroupMembers')]");
-    private static final By EXIT_GROUP_BTN = byXpath("//*[contains(@class, 'dropdown_ac')]");
+    private static final By PROMOTE_ICON = byXpath("//*[contains(@class, 'svg-ico_promote_16')]");
 
-    public CurrentGroupPage() {
-        validate();
+    abstract public void leaveGroup();
+
+    public static boolean isMyGroup() {
+        return $(PROMOTE_ICON).is(visible);
     }
 
     public String getGroupTitle() {
@@ -32,16 +33,6 @@ public class CurrentGroupPage implements Loadable {
                 .shouldBe(visible.because("Нет элемента с кол-вом участников группы"))
                 .getText()
                 .split(" ")[1];
-    }
-
-    public void exitGroup() {
-        $(EXIT_GROUP_BTN).shouldBe(visible.because("Нет кнопки выхода из группы"));
-        $(EXIT_GROUP_BTN).hover();
-        $(EXIT_GROUP_BTN).click();
-        By exitGroupDropdown = byXpath("//*[@class='dropdown_n']");
-        $(exitGroupDropdown).shouldBe(visible.because("Нет выпадающей кнопки выхода из группы")).click();
-        By submitExit = byAttribute("data-l", "t,confirm");
-        $(submitExit).should(visible.because("Нет окна подтверждения выходы из группы")).click();
     }
 
     @Override

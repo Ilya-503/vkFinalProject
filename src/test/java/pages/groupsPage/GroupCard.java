@@ -8,6 +8,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
+/**
+ * Карточка группы на странице с группами
+ */
 public class GroupCard {
 
     private static final By PARTICIP_AMOUNT = byClassName("friends-in-group_label");
