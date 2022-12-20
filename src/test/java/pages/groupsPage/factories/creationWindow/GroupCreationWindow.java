@@ -24,23 +24,34 @@ public class GroupCreationWindow implements Loadable {
     }
 
 
-    public <T extends GroupCreationWindow> T setTitle(String title) {
+    /**
+     * Ввод названия при создании группы
+     * @param title название группы
+     * @return эту же страницу
+     * <p><i>tip</i>: вызывайте этот метод в конце, чтобы не прерывать цепочку вызовов<p/>
+     */
+    public GroupCreationWindow setTitle(String title) {
         $(TITLE_FIELD)
                 .shouldBe(visible.because("Нет поля для ввода названия группы"))
                 .clear();
         $(TITLE_FIELD)
                 .setValue(title);
-        return (T) this;
+        return this;
     }
 
-    public <T extends GroupCreationWindow> T setLegalTheme() {
+    /**
+     * Установка допустимой тематики группы
+     * @return эту же страницу
+     * <p><i>tip</i>: вызывайте этот метод в конце, чтобы не прерывать цепочку вызовов<p/>
+     */
+    public GroupCreationWindow setLegalTheme() {
         $(THEME_DROPDOWN)
                 .shouldBe(visible.because("Нет поля для выобра тематики группы"))
                 .click();
         $(LEGAL_THEME)
                 .shouldBe(visible.because("Не отображается тематика 'Кино'"))
                 .click();
-        return (T) this;
+        return this;
     }
 
     public void submitCreation() {

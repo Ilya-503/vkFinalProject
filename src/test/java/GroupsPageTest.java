@@ -63,7 +63,7 @@ public class GroupsPageTest extends BaseTest {
         }
 
         grCrWindow.submitCreation();
-        Thread.sleep(700);  // FIX THIS
+        Thread.sleep(400);  // строки с ошиб. прогружаются по-разному
 
         assertAll(
                 () -> assertEquals(adr_err.equals("TRUE"), grCrWindow.isEmptyAddress(),
@@ -110,11 +110,11 @@ public class GroupsPageTest extends BaseTest {
                 .setPhone(phone)
                 .setWebSite(website)
                 .setAddress(address)
+                .setLegalCity()
                 .setTitle(title)
-                .setLegalTheme();
+                .setLegalTheme()
+                .submitCreation();
 
-        grCrWindow.setLegalCity();
-        grCrWindow.submitCreation();
         GroupPage createdGroupPage = new MyGroupPage();
         assertEquals(title, createdGroupPage.getGroupTitle());
     }
@@ -127,7 +127,7 @@ public class GroupsPageTest extends BaseTest {
         );
         }
 
-    @AfterEach
+      @AfterEach
     public void clean() {
         LeftNavigatePanel.goToGroupsPage();
         groupsPage.removeAllJoinedGroups();
