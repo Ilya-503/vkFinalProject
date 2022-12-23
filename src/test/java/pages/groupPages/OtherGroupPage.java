@@ -1,7 +1,7 @@
 package pages.groupPages;
 
 import org.openqa.selenium.By;
-import pages.groupsPage.factories.groupPage.GroupPage;
+import pages.groupsPage.factories.GroupPage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
@@ -12,14 +12,12 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class OtherGroupPage extends GroupPage {
 
-    private static final By EXIT_GROUP_BTN = byXpath("//*[contains(@class, 'dropdown_ac')]");
-
     public OtherGroupPage() {
         validate();
     }
 
     public void leaveGroup() {
-        $(EXIT_GROUP_BTN)
+        $(JOIN_OR_LEAVE_BTN)
                 .shouldBe(visible.because("Нет кнопки выхода из группы"))
                 .click();
         By exitGroupDropdown = byXpath("//*[@class='dropdown_n']");

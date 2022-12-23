@@ -1,7 +1,7 @@
 package pages.groupsPage.pageElements;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import pages.groupsPage.factories.creationWindow.GroupCreationWindow;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byId;
@@ -78,32 +78,40 @@ public class EventCreationWindow extends GroupCreationWindow {
         return this;
     }
 
+    public EventCreationWindow setTitle(String title) {
+        return (EventCreationWindow) super.setTitle(title);
+    }
+
+    public EventCreationWindow setLegalTheme() {
+        return (EventCreationWindow) super.setLegalTheme();
+    }
+
     @Override
-    public boolean isEmptyTheme() {            // т.к. новый локатор EMPTY_THEME_ERR
-        return $(EMPTY_THEME_ERR).is(visible);
+    public SelenideElement getIllegalThemeErr() {            // т.к. новый локатор EMPTY_THEME_ERR
+        return $(EMPTY_THEME_ERR);
     }
 
-    public boolean isOldStartDate() {
-        return $(OLD_START_DATE_ERR).is(visible);
+    public SelenideElement getOldStartDateErr() {
+        return $(OLD_START_DATE_ERR);
     }
 
-    public boolean isEmptyStartDate() {
-        return $(EMPTY_START_DATE_ERR).is(visible);
+    public SelenideElement getEmptyStartDateFieldErr() {
+        return $(EMPTY_START_DATE_ERR);
     }
 
-    public boolean isEmptyCity() {
-        return $(EMPTY_CITY_ERR).is(visible);
+    public SelenideElement getIllegalCityErr() {
+        return $(EMPTY_CITY_ERR);
     }
 
-    public boolean isEmptyAddress() {
-        return $(EMPTY_ADDRESS_ERR).is(visible);
+    public SelenideElement getEmptyAddressFieldErr() {
+        return $(EMPTY_ADDRESS_ERR);
     }
 
-    public boolean isIllegalPhone() {
-        return $(ILLEGAL_PHONE_ERR).is(visible);
+    public SelenideElement getIllegalPhoneErr() {
+        return $(ILLEGAL_PHONE_ERR);
     }
 
-    public boolean isIllegalWebsite() {
-        return $(ILLEGAL_WEBSITE_ERR).is(visible);
+    public SelenideElement getIllegalWebsiteErr() {
+        return $(ILLEGAL_WEBSITE_ERR);
     }
 }

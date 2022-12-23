@@ -1,7 +1,7 @@
 package pages.groupPages;
 
 import org.openqa.selenium.By;
-import pages.groupsPage.factories.groupPage.GroupPage;
+import pages.groupsPage.factories.GroupPage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;

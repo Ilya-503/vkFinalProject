@@ -3,15 +3,14 @@ package pages.groupsPage;
 import org.openqa.selenium.By;
 import pages.LeftNavigatePanel;
 import pages.Loadable;
-import pages.groupsPage.factories.creationWindow.GroupCreationWindow;
-import pages.groupsPage.factories.creationWindow.GroupCreationWindowFactory;
-import pages.groupsPage.factories.groupPage.GroupPage;
-import pages.groupsPage.factories.groupPage.GroupPageFactory;
+import pages.groupsPage.pageElements.EventCreationWindow;
+import pages.groupsPage.factories.GroupPage;
+import pages.groupsPage.factories.GroupPageFactory;
+import pages.groupsPage.pageElements.StandardGroupCreationWindow;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
-import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Страница с группами (группы юзера, популярные и т.д.)
@@ -55,30 +54,34 @@ public class GroupsPage implements Loadable {
 
     }
 
-    /**
-     * @param flag какую группу создать?
-     *             <p> 0 - публичную    </p>
-     *             <p> 1 - по интересам </p>
-     *             <p> 2 - мероприятие  </p>
-     * @return панель создания группы
-     */
-    public GroupCreationWindow createGroup(int flag) {
+    public StandardGroupCreationWindow goToPublicGroupCreationWindow() {
+        clickGroupCreationBtn();
+        $(CREATE_PUBLIC_GR)
+                .shouldBe(visible.because("Нет кнопки для создания публичной группы"))
+                .click();
+        return new StandardGroupCreationWindow();
+    }
+
+    public StandardGroupCreationWindow goToInterestsGroupCreationWindow() {
+        clickGroupCreationBtn();
+        $(CREATE_INTEREST_GR)
+                .shouldBe(visible.because("Нет кнопки для создания группы по интересам"))
+                .click();
+        return new StandardGroupCreationWindow();
+    }
+
+    public EventCreationWindow goToEventGroupCreationWindow() {
+        clickGroupCreationBtn();
+        $(CREATE_EVENT)
+                .shouldBe(visible.because("Нет кнопки для создания мероприятия"))
+                .click();
+        return new EventCreationWindow();
+    }
+
+    private void clickGroupCreationBtn() {
         $(CREATE_GROUP_BTN)
                 .shouldBe(visible.because("Нет кнопки для создания группы"))
                 .click();
-        switch (flag) {
-            case 0 -> $(CREATE_PUBLIC_GR)
-                    .shouldBe(visible.because("Нет кнопки для создания публичной группы"))
-                    .click();
-            case 1 -> $(CREATE_INTEREST_GR)
-                    .shouldBe(visible.because("Нет кнопки для создания группы по интересам"))
-                    .click();
-            case 2 -> $(CREATE_EVENT)
-                    .shouldBe(visible.because("Нет кнопки для создания мероприятия"))
-                    .click();
-            default -> fail("Использован неверный флаг при создании группы!");
-        }
-        return GroupCreationWindowFactory.getGroupCreationWindow();
     }
 
     @Override

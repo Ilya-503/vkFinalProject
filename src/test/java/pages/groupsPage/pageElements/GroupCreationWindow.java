@@ -1,5 +1,7 @@
-package pages.groupsPage.factories.creationWindow;
+package pages.groupsPage.pageElements;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.Loadable;
 
@@ -28,7 +30,6 @@ public class GroupCreationWindow implements Loadable {
      * Ввод названия при создании группы
      * @param title название группы
      * @return эту же страницу
-     * <p><i>tip</i>: вызывайте этот метод в конце, чтобы не прерывать цепочку вызовов<p/>
      */
     public GroupCreationWindow setTitle(String title) {
         $(TITLE_FIELD)
@@ -42,7 +43,6 @@ public class GroupCreationWindow implements Loadable {
     /**
      * Установка допустимой тематики группы
      * @return эту же страницу
-     * <p><i>tip</i>: вызывайте этот метод в конце, чтобы не прерывать цепочку вызовов<p/>
      */
     public GroupCreationWindow setLegalTheme() {
         $(THEME_DROPDOWN)
@@ -67,19 +67,12 @@ public class GroupCreationWindow implements Loadable {
                 .click();
     }
 
-    public boolean isEmptyTitle() {
-        return $(EMPTY_TITLE_ERR).is(visible);
+    public SelenideElement getEmptyTitleFieldErr() {
+        return $(EMPTY_TITLE_ERR);
     }
 
-    public boolean isEmptyTheme() {
-        return $(EMPTY_THEME_ERR).is(visible);
-    }
-
-    public static boolean isEventCrWn() {
-        return $(WINDOW_HEADER)
-                .shouldBe(visible.because("Не отображается хедер окна создания группы"))
-                .innerText()
-                .contains("Мероприятие");
+    public SelenideElement getIllegalThemeErr() {
+        return $(EMPTY_THEME_ERR);
     }
 
     @Override
